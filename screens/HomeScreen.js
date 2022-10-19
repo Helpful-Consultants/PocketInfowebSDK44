@@ -76,9 +76,9 @@ export default HomeScreen = (props) => {
           ? Constants.manifest.ios.buildNumber
           : null
         : Constants.manifest.android &&
-          typeof Application.nativeBuildVersion !== 'undefined' &&
-          Application.nativeBuildVersion
-        ? Application.nativeBuildVersion
+          typeof Constants.manifest.android.versionCode !== 'undefined' &&
+          Constants.manifest.android.versionCode
+        ? Constants.manifest.android.versionCode
         : null
       : null;
   //   console.log('IN HOME !!!!! buildNumber', buildNumber, typeof buildNumber);

@@ -43,19 +43,19 @@ export default AppInfo = (props) => {
   const buildNumber =
     typeof Constants !== 'undefined' &&
     typeof Constants.manifest !== 'undefined' &&
-    typeof Platform !== 'undefined' &&
-    typeof Platform.OS !== 'undefined' &&
-    Platform.OS
-      ? Platform.OS === 'ios'
-        ? Constants.manifest.ios &&
-          typeof Constants.manifest.ios.buildNumber !== 'undefined' &&
-          Constants.manifest.ios.buildNumber
-          ? Constants.manifest.ios.buildNumber
+    typeof Platform !== 'undefined'
+      ? typeof Platform.OS !== 'undefined' && Platform.OS
+        ? Platform.OS === 'ios'
+          ? Constants.manifest.ios &&
+            typeof Constants.manifest.ios.buildNumber !== 'undefined' &&
+            Constants.manifest.ios.buildNumber
+            ? Constants.manifest.ios.buildNumber
+            : null
+          : Constants.manifest.android &&
+            typeof Constants.manifest.android.versionCode !== 'undefined' &&
+            Constants.manifest.android.versionCode
+          ? Constants.manifest.android.versionCode
           : null
-        : Constants.manifest.android &&
-          typeof Application.nativeBuildVersion !== 'undefined' &&
-          Application.nativeBuildVersion
-        ? Application.nativeBuildVersion
         : null
       : null;
 

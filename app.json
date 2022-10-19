@@ -39,7 +39,7 @@
       }
     },
     "android": {
-      "versionCode": 25,
+      "versionCode": 24,
       "package": "com.helpfulconsultants.pocketinfowebextra",
       "permissions": [
         "CHANGE_BADGE",
