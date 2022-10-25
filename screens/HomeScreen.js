@@ -63,6 +63,19 @@ export default HomeScreen = (props) => {
   //   console.log('Constants', Constants);
   //   console.log('Constants.manifest', Constants.manifest && Constants.manifest);
 
+  const appOS =
+    typeof Platform !== 'undefined' &&
+    typeof Platform.OS !== 'undefined' &&
+    Platform.OS
+      ? Platform.OS === 'ios'
+        ? 'ios'
+        : 'android'
+      : null;
+
+  const appName = Constants.manifest.name ? Constants.manifest.name : '';
+  //   console.log('appName', appName);
+  const appEdition = appName.toLowerCase().includes('extra') ? 'extra' : 'pro';
+
   const buildNumber =
     typeof Constants !== 'undefined' &&
     typeof Constants.manifest !== 'undefined' &&
@@ -386,14 +399,30 @@ export default HomeScreen = (props) => {
   const gridRows = showingDemoApp ? 8 : 6;
 
   const openAppStore = () => {
-    const appLinkPro =
+    const androidAppLinkPro =
+      'market://details?id=com.helpfulconsultants.pocketinfowebpro';
+    const androidAppLinkExtra =
+      'market://details?id=com.helpfulconsultants.pocketinfowebextra';
+    const iosAppLinkPro =
       'itms-apps://apps.apple.com/gb/app/pocket-infoweb/id1488802249';
-    const appLinkExtra =
+    const iosAppLinkExtra =
       'itms-apps://apps.apple.com/gb/app/pocket-infoweb-extra/id1552850825';
-    https: Linking.canOpenURL(appLinkPro).then(
+
+    const appLink =
+      appOS === 'ios'
+        ? appEdition === 'extra'
+          ? iosAppLinkExtra
+          : iosAppLinkPro
+        : appEdition === 'extra'
+        ? androidAppLinkExtra
+        : androidAppLinkPro;
+    // console.log('appOS is', appOS);
+    // console.log('appLink is', appLink);
+
+    Linking.canOpenURL(appLink).then(
       (supported) => {
-        console.log('open to link');
-        supported && Linking.openURL(appLinkPro);
+        // console.log('open to link', appLink);
+        supported && Linking.openURL(appLink);
       },
       (err) => console.log(err)
     );
