@@ -1,4 +1,4 @@
-const appChangeInfoString = 'Changes: Refactored.';
+const appChangeInfoString = 'Changes: Prompt update.';
 
 // const getAppInfo = () => {
 //   //   console.log(objArr.length, key, order);
